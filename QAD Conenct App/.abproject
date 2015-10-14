@@ -1,0 +1,48 @@
+{
+  "ProjectName": "QAD Conenct App",
+  "ProjectGuid": "7757f97e-6634-4cfe-904d-955b57375690",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.QADConenctApp",
+  "DisplayName": "QAD Conenct App",
+  "Author": "",
+  "Description": "QAD Conenct App",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{1c2b5117-cd8b-4a0b-9a76-0500f340db84}",
+  "WP8ProductID": "{91277115-8d9b-4550-94bc-0eac83360d78}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.QADConenctApp",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ],
+  "CorePlugins": [
+    "org.apache.cordova.network-information"
+  ]
+}
