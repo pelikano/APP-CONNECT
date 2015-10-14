@@ -1,15 +1,89 @@
 {
   "type": "kendo-ui-mobile",
-  "isNew": true,
+  "views": [
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "authenticationView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "authenticationViewModel",
+          "dataProvider": "defaultProvider",
+          "emailLabel": "Username",
+          "passwordLabel": "Password",
+          "signinLabel": "Sign In",
+          "signinRedirect": "homeView",
+          "enableRegistration": false
+        }
+      ],
+      "title": "Authentication",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "homeView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:list",
+          "name": "homeViewModel",
+          "dataProvider": "workspaceProvider",
+          "collection": "",
+          "headerField": "Text",
+          "masterDetails": false,
+          "pullToRefresh": true,
+          "endlessScroll": true
+        }
+      ],
+      "title": "Workspace List",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "dataListView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:list",
+          "name": "dataListViewModel",
+          "dataProvider": "notificationProvider",
+          "collection": "",
+          "headerField": "Text",
+          "masterDetails": true,
+          "pullToRefresh": true,
+          "endlessScroll": true
+        }
+      ],
+      "title": "Notification List",
+      "addToNavigation": false
+    }
+  ],
   "dataProviders": [
     {
-      "type": "dataProvider",
-      "title": "DefaultProvider",
+      "type": "kendo-ui-mobile:dataProvider",
       "name": "defaultProvider",
+      "everliveUrl": "//platform.telerik.com/bs-api/v1/",
+      "title": "DefaultProvider",
       "source": "everlive",
-      "offlineStorage": true,
       "everliveKey": "Y2IpSQ0peSCVtcpA",
-      "everliveUrl": ""
+      "offlineStorage": true
+    },
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "workspaceProvider",
+      "title": "WorkspaceProvider",
+      "source": "json",
+      "url": "http://vmfvp02:22010/qad-central/api/qracore/inboxdata?loadAll=true"
+    },
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "notificationProvider",
+      "title": "Notification Provider",
+      "source": "json",
+      "url": "http://vmfvp02:22010/qad-central/api/qracore/inboxnotifications?loadAll=true"
     }
-  ]
+  ],
+  "name": "kendoUiMobileApp",
+  "navigation": "tabstrip",
+  "view": "homeView",
+  "transition": "slide",
+  "skin": "flat"
 }
