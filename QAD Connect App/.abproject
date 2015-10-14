@@ -1,11 +1,11 @@
 {
-  "ProjectName": "QAD Conenct App",
+  "ProjectName": "QAD Connect App",
   "ProjectGuid": "7757f97e-6634-4cfe-904d-955b57375690",
   "projectVersion": 1,
-  "AppIdentifier": "com.telerik.QADConenctApp",
-  "DisplayName": "QAD Conenct App",
-  "Author": "",
-  "Description": "QAD Conenct App",
+  "AppIdentifier": "com.telerik.QADConnectApp",
+  "DisplayName": "QAD Connect App",
+  "Author": "Java Ducks team",
+  "Description": "QAD Connect App",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
@@ -19,8 +19,7 @@
     "android.permission.INTERNET"
   ],
   "DeviceOrientations": [
-    "Portrait",
-    "Landscape"
+    "Portrait"
   ],
   "AndroidHardwareAcceleration": "false",
   "iOSStatusBarStyle": "Default",
@@ -44,5 +43,6 @@
   ],
   "CorePlugins": [
     "org.apache.cordova.network-information"
-  ]
+  ],
+  "iOSDeploymentTarget": "6.0"
 }
