@@ -13,28 +13,41 @@ app.homeView = kendo.observable({
             type: 'json',
             transport: {
                 read: {
+                    type: "GET",
+                    beforeSend: function(req,settings) {
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));                        
+                    },
                     url: dataProvider.url
                 }
             },
 
             schema: {
-                data: '',
+                data: 'data.workspaceNotifications',
                 model: {
+                    id: 'workspaceName',
                     fields: {
-                        'Text': {
-                            field: 'Text',
+                        'headerTitle': {
+                            field: 'headerTitle',
                             defaultValue: ''
                         },
+                        'unreadNotifications': {
+                            field: 'unreadNotifications',
+                            defaultValue: 0
+                        }
                     }
                 }
-            },
-            serverSorting: true,
-            serverPaging: true,
-            pageSize: 50
+            }
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
         homeViewModel = kendo.observable({
-            dataSource: dataSource
+            dataSource: dataSource,
+            itemClick: function(e) {
+                localStorage.setItem("domainCode", e.dataItem.domainCode);
+                localStorage.setItem("entityCode", e.dataItem.entityCode);
+                
+                //app.mobileApp.navigate('components/dataListView/view.html');
+                app.mobileApp.navigate('components/authenticationView/view.html');
+            }
         });
 
     parent.set('homeViewModel', homeViewModel);

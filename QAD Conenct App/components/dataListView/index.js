@@ -13,24 +13,35 @@ app.dataListView = kendo.observable({
             type: 'json',
             transport: {
                 read: {
+                    type: "GET",
+                    beforeSend: function(req, settings) {
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
+                        settings.url += '&domainCode=' + localStorage.getItem("domainCode") + '&entityCode=' + localStorage.getItem("entityCode");
+                    },
                     url: dataProvider.url
                 }
             },
 
             schema: {
-                data: '',
+                data: 'data',
                 model: {
-                    fields: {
-                        'Text': {
-                            field: 'Text',
+                    id: 'notificationId',
+                    fields: {                        
+                        'urlText': {
+                            field: 'urlText',
                             defaultValue: ''
                         },
+               			'text': {
+                            field: 'text',
+                            defaultValue: ''
+                        },
+            			'timestamp': {
+                            field: 'timestamp',
+                            defaultValue: ''
+                        }                         
                     }
                 }
-            },
-            serverSorting: true,
-            serverPaging: true,
-            pageSize: 50
+            }
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
         dataListViewModel = kendo.observable({
