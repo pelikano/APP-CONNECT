@@ -184,7 +184,7 @@
 }
 
 
-#container{width:100%;}
+#container{width:100%;font-size: 20px;}
 #left{float:left;}
 #right{float:right; margin-right: 0.2rem;}
 #center{margin:0 auto; }
@@ -201,8 +201,24 @@
 }
 
 .km-list input[type=text]:not(.k-input), .km-list input[type=password], .km-list input[type=search], .km-list input[type=number], .km-list input[type=tel], .km-list input[type=url], .km-list input[type=email], .km-list input[type=file], .km-list input[type=month], .km-list input[type=color], .km-list input[type=week], .km-list input[type=date], .km-list input[type=time], .km-list input[type=datetime], .km-list input[type=datetime-local], .km-list select:not([multiple]), .km-list .k-dropdown, .km-list textarea {
-  width: 65%;
+  width: 100%;
   
+  margin-top: 1rem;  
+  text-align:center;
+}
+
+.login-input {
+    width: 80%;
+    color: #686868;
+    font-size: 18px;
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid #c5c5c5;
+    margin-bottom: 10px;
+}
+.listview2{
+    list-style-type: none;
+    
 }
 
 
