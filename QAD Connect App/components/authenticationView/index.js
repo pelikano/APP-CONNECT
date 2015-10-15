@@ -67,7 +67,6 @@ app.authenticationView = kendo.observable({
                     return false;
                 }
 
-                localStorage.clear();
                 
                 //provider.Users.login(email, password, successHandler, init);
                 localStorage.setItem("user",  email);
