@@ -67,4 +67,13 @@
 }());
 
 // START_CUSTOM_CODE_kendoUiMobileApp
+
+function logOut(){
+    if (confirm('Are you sure you want to logout?')){
+        localStorage.clear();
+        app.mobileApp.navigate('components/authenticationView/view.html');
+    }
+}
+
+var userid = localStorage.getItem("user");
 // END_CUSTOM_CODE_kendoUiMobileApp
