@@ -4,18 +4,18 @@
                         <label>Sign in to<br> QAD Connect</label>
         </div>
         <form>
-            <ul data-role="listview" data-style="inset">
+           
+            <ul class="listview2" data-style="inset">
+                <br>
                 <li>
-                    <label>Username
-                        <input type="email" data-bind="value: authenticationViewModel.email" required autofocus>
-                    </label>
-                </li>
+                    <input class="login-input" placeholder="Username" type="email" data-bind="value: authenticationViewModel.email" required autofocus >
+                 </li>
+                 <br>
                 <li>
-                    <label>Password
-                        <input type="password" data-bind="value: authenticationViewModel.password" required>
-                    </label>
+                    <input class="login-input" placeholder="Password" type="password" data-bind="value: authenticationViewModel.password" required >
                 </li>
-            </ul>
+             </ul>
+            
 
             <div class="button-group button-group-vertical">
                 <a data-role="button" class="primary" data-bind="events: { click: authenticationViewModel.signin }">Sign In</a>
