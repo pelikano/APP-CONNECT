@@ -27,6 +27,10 @@ app.dataListView = kendo.observable({
                 model: {
                     id: 'notificationId',
                     fields: {                        
+                        'fromUsername': {
+                            field: 'fromUser.userName',
+                            defaultValue: ''
+                        },                        
                         'urlText': {
                             field: 'urlText',
                             defaultValue: ''
@@ -58,9 +62,25 @@ app.dataListView = kendo.observable({
                 }
                 dataListViewModel.set('currentItem', itemModel);
             },
+            fields: {
+                reply: '',
+            },
+            submit: function() {
+                $.ajax({
+                    type: 'POST',
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxpostcomment",
+                    data: {
+                       notificationId: 'testid',
+                       domainCode: '',
+                       entityCode: ''                        
+                    },
+                    success: function(result){
+                       
+                    }
+                });
+            },           
             currentItem: null
         });
-
     parent.set('dataListViewModel', dataListViewModel);
 })(app.dataListView);
 
