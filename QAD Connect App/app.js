@@ -7,9 +7,7 @@
 
     var bootstrap = function() {
         $(function() {    
-            
-            localStorage.clear();
-            
+             
             var initialPage = 'components/authenticationView/view.html';
             if (!localStorage.getItem("user")){
                 initialPage = 'components/authenticationView/view.html';
