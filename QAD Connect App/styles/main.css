@@ -371,6 +371,28 @@
     
 }
 
+.reply-panel{
+            
+    position:absolute;
+	
+    top:0px;  
+    width:90%;
+    
+    
+}
+.reply-fields{
+    width: 100%;
+    color: #686868;
+    outline: none;
+    border: 0px;
+    Left:4%;
+    border-bottom: 1px solid #c5c5c5;
+    margin-bottom: 10px;
+    font-size: 1em;
+    margin-top: 8px;
+}
+
+
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
 

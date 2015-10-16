@@ -1,14 +1,19 @@
 <div data-role="view" data-title="Details" data-layout="main-nav" data-model="app.dataListView.dataListViewModel" data-bind="events: { show: detailsShow }">
 
     <!-- START_CUSTOM_CODE_dataListViewModel -->    
-    <h5><span data-bind="text: currentItem.urlText"></span></h5>
-	<p><span data-bind="html: currentItem.text"></span></p>
-    
+    <div class="reply-panel">
+    <ul class="listview2">
+        <br>
+        <b><span  data-bind="text: currentItem.urlText"></span></b>
+       <li class="reply-fields"></li>
+       <br>
+	    <li ><span  data-bind="html: currentItem.text"></span></li>
+        <br>
     <div id="formViewModel" class="form-view">
         <form action="submit()">
-            <ul class="form-content" data-role="listview" data-style="inset" data-type="group">
+            <ul class="form-content" data-role="listview" data-style="inset" data-type="group" >
                 <li><label>
-                    <input id="reply" type="text" data-bind="value: fields.reply" autofocus required/>
+                    <input id="reply" type="text" data-bind="value: fields.reply" style="height: 100px; width: 90%; " autofocus required/>
                  </label>
                 </li>
             </ul>           
@@ -17,7 +22,9 @@
             </div>
         </form>
     </div>
-    
+    </ul>
+        
+     </div>
         
     <div data-role="footer">
             <div data-role="tabstrip">
@@ -26,5 +33,7 @@
                 <a href="views/contacts.html" data-icon="contacts">Contact</a>
             </div>
     </div>
+        
+     
     <!-- END_CUSTOM_CODE_dataListViewModel -->
 </div>
