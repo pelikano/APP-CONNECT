@@ -1,6 +1,6 @@
 <div data-role="view" data-title="Workspace List" data-layout="workspaces" data-model="app.homeView" data-show="app.homeView.onShow" data-after-show="app.homeView.afterShow">
 
-    <ul data-role="listview"  data-style="inset2" margin= "0em" data-template="homeViewModelTemplate"  data-bind="{ source: homeViewModel.dataSource, events: {click: homeViewModel.itemClick}}"   data-pull-to-refresh="true" data-endless-scroll="false">
+    <ul data-role="listview"  data-style="inset2" margin= "0em" data-template="homeViewModelTemplate"  data-bind="{ source: homeViewModel.dataSource, events: {click: homeViewModel.itemClick}}" data-transition="slide:left"   data-pull-to-refresh="true" data-endless-scroll="false">
     </ul>
     
     <script type="text/x-kendo-template" id="homeViewModelTemplate">
