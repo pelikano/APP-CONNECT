@@ -27,7 +27,7 @@
     <div data-role="layout" data-id="main-nav">
         <header data-role="header">
             <div data-role="navbar" class="header-text">
-                <a onClick="backPage();" data-align="left">Back</a>
+                <a class="back-icon" onClick="backPage();" data-align="left">Back</a>
                 <img  src="resources/img/QAD_46.png">
                  <a data-role="button" href="#foo" data-rel="popover" data-icon="more" data-align="right">
                       <div id="foo" data-role="popover" data-popup='{ "width": "140" }'>
@@ -40,7 +40,7 @@
                                         var userinfo = { username: localStorage.getItem("user") };
                                        </script>
                                   </li>
-                                  <li><span data-icon="more" data-align="right" data-role="button" onClick="logOut();">Logout</span></li>
+                                  <li><span data-icon="mycustomicon" onClick="logOut();"></span><span data-align="right" data-role="button" onClick="logOut();">Logout</span></li>
                               </ul>
                           </div>
                         
