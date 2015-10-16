@@ -143,6 +143,12 @@
     
 }
 
+.km-flat .km-button {
+  border-color: rgba(0,0,0,0);
+  background: rgba(0,0,0,0);  
+  border-width:0px; 
+}
+
 
 .km-view .signin-view2 {
     background-color: #fff;        
@@ -236,8 +242,36 @@
     
 }
 
+.km-details{
+    float:right; margin-right: 0.2rem;
+}
 
 
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #999;
+    border-radius: 10px;
+}
+
+.badge-notify {
+    background: red;
+    position: relative;
+    top: -2px;
+}
+
+.km-list>li, .km-widget .km-listview-link, .km-widget .km-listview-label {
+
+  padding: .9em .7em;
+}
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
 
