@@ -6,7 +6,21 @@
     };
 
     var bootstrap = function() {
-        $(function() {
+        $(function() {    
+            
+            localStorage.clear();
+            
+            var initialPage = 'components/authenticationView/view.html';
+            if (!localStorage.getItem("user")){
+                initialPage = 'components/authenticationView/view.html';
+            } else {
+                if (!localStorage.getItem("domainCode") && !localStorage.getItem("entityCode")){
+                    initialPage = 'components/homeView/view.html';
+                } else {
+                    initialPage = 'components/dataListView/view.html';
+                }                
+            }
+            
             app.mobileApp = new kendo.mobile.Application(document.body, {
 
                 // you can change the default transition (slide, zoom or fade)
@@ -15,7 +29,7 @@
                 // and feel of the operating system
                 skin: 'flat',
                 // the application needs to know which view to load first
-                initial: 'components/authenticationView/view.html',
+                initial: initialPage,
                 statusBarStyle: 'black-translucent'
             });
         });
