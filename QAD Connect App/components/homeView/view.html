@@ -4,10 +4,8 @@
     </ul>
     
     <script type="text/x-kendo-template" id="homeViewModelTemplate">
-       
-        <div id="container" >
-             <div id="left"><b>#: data['headerTitle'] #</b></div> 
-             <div id="right">#: data['unreadNotifications'] # <b>></b></div>
-        </div>   
+             <span style="float:left">#: data['headerTitle'] #</span>
+             <span class="badge badge-notify" style="float:right;  margin-right: 0.4rem;">#: data['unreadNotifications'] #</span>
+             <span style="float:right" data-icon="details"></span>
     </script>
 </div>

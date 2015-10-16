@@ -119,13 +119,29 @@
     -webkit-box-shadow: 0px 1px 0px 0px #fff;
     -moz-box-shadow: 0px 1px 0px 0px #000;
     border-bottom: 1px solid #9ca1a5;
-    height: 61px;
+    height: 81px;
 }
 
+#kendoUiMobileApp.km-android .km-view .km-navbar{
+    background-color: #03a9f4;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0px 1px 0px 0px #000;
+    -webkit-box-shadow: 0px 1px 0px 0px #fff;
+    -moz-box-shadow: 0px 1px 0px 0px #000;
+    border-bottom: 1px solid #9ca1a5;
+    height: 121px;
+}
 .km-view-title, .km-dialog-title {
+    position:initial !important;
+  
+}
 
-    top: -10px;
-    vertical-align: center;
+
+.km-flat .km-button {
+  border-color: rgba(0,0,0,0);
+  background: rgba(0,0,0,0);  
+  border-width:0px; 
 }
 
 
@@ -184,7 +200,7 @@
 }
 
 
-#container{width:100%;}
+#container{width:100%;font-size: 20px;}
 #left{float:left;}
 #right{float:right; margin-right: 0.2rem;}
 #center{margin:0 auto; }
@@ -201,10 +217,75 @@
 }
 
 .km-list input[type=text]:not(.k-input), .km-list input[type=password], .km-list input[type=search], .km-list input[type=number], .km-list input[type=tel], .km-list input[type=url], .km-list input[type=email], .km-list input[type=file], .km-list input[type=month], .km-list input[type=color], .km-list input[type=week], .km-list input[type=date], .km-list input[type=time], .km-list input[type=datetime], .km-list input[type=datetime-local], .km-list select:not([multiple]), .km-list .k-dropdown, .km-list textarea {
-  width: 65%;
+  width: 100%;
+  
+  margin-top: 1rem;  
+  text-align:center;
+}
+
+.login-input {
+    width: 80%;
+    color: #686868;
+    font-size: 18px;
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid #c5c5c5;
+    margin-bottom: 10px;
+}
+.listview2{
+    list-style-type: none;
+    
+}
+
+.km-details{
+    float:right; margin-right: 0.2rem;
+}
+
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #999;
+    border-radius: 10px;
+}
+
+.badge-notify {
+    background: red;
+    position: relative;
+    top: -2px;
+}
+
+.km-list>li, .km-widget .km-listview-link, .km-widget .km-listview-label {
+
+  padding: .9em .7em;
+}
+
+.km-flat .km-popup.km-pane {
+  border: 1px solid transparent;
+  background-color: #c5c5c5;
+  border-radius:0px;
+  text-align: left;  
   
 }
 
+.km-flat .km-popup-wrapper {
+   padding-right: 0px;
+   padding-top: 21px; 
+}
+
+.km-flat .km-popup-arrow:after {
+  border-color: rgba(0,0,0,0) transparent;
+  border-style: solid;
+  border-width: 0 15px 15px;
+}
 
 
 /* END_CUSTOM_CODE_kendoUiMobileApp */
