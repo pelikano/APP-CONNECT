@@ -33,13 +33,14 @@
                       <div id="foo" data-role="popover" data-popup='{ "width": "140" }'>
                           <div data-role="view" data-title="view1" data-model="userinfo">
                               <ul data-role="listview">
+                                  
                                   <li>
-                                      <span data-bind="text:username"></span>
+                                      <i><span data-bind="text:username"></span></i>
                                       <script>
                                         var userinfo = { username: localStorage.getItem("user") };
                                        </script>
                                   </li>
-                                  <li><span data-role="button" onClick="logOut();">Logout</span></li>
+                                  <li><span data-icon="more" data-align="right" data-role="button" onClick="logOut();">Logout</span></li>
                               </ul>
                           </div>
                         
@@ -78,7 +79,7 @@
                           <div data-role="view" data-title="view1" data-model="userinfo">
                               <ul data-role="listview">
                                   <li>
-                                      <span data-bind="text:username"></span>
+                                      <i><span data-bind="text:username"></span></i>
                                       <script>
                                         var userinfo = { username: localStorage.getItem("user") };
                                        </script>
