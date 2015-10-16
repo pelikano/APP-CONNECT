@@ -92,13 +92,10 @@ var userid = localStorage.getItem("user");
 function backPage(){
     var currentView = localStorage.getItem("currentView");
     if (currentView == 'dataListMain'){
-        alert('dataListMain');
         app.mobileApp.navigate('components/homeView/view.html');
     } else if (currentView == 'dataListDetail'){
-        alert('dataListDetail');
         app.mobileApp.navigate('components/dataListView/view.html');
     } else {
-        alert('pop');
         app.mobileApp.navigate('components/authenticationView/view.html');
     }
     //app.mobileApp.navigate(localStorage.getItem("currentView"));
