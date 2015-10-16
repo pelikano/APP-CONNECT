@@ -25,10 +25,13 @@
 	<p><span data-bind="html: currentItem.text"></span></p>
     
     <div id="formViewModel" class="form-view">
-        <form>
-            <ul class="form-content" data-role="listview" data-style="inset">
-                <li><input data-bind="value: fields.reply" type="text"></li>
-            </ul>
+        <form action="submit()">
+            <ul class="form-content" data-role="listview" data-style="inset" data-type="group">
+                <li><label>
+                    <input id="reply" type="text" data-bind="value: fields.reply" autofocus required/>
+                 </label>
+                </li>
+            </ul>           
             <div class="button-group">                
                 <a class="primary" data-role="button" data-icon="reply" data-bind="events: { click: submit }">Reply</a>
             </div>
