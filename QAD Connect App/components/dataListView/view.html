@@ -2,16 +2,35 @@
     <!-- START_CUSTOM_CODE_dataListView -->
     <!-- END_CUSTOM_CODE_dataListView -->
 
-    <ul data-role="listview" data-style="" data-template="dataListViewModelTemplate" data-bind="{ source: dataListViewModel.dataSource, events: {click: dataListViewModel.itemClick}}" data-pull-to-refresh="true" data-endless-scroll="false">
+    <ul data-role="listview" data-style="inset" data-template="dataListViewModelTemplate" data-bind="{ source: dataListViewModel.dataSource, events: {click: dataListViewModel.itemClick}}" data-pull-to-refresh="true" data-endless-scroll="false">
     </ul>
-    <!-- START_CUSTOM_CODE_dataListViewModel -->
-    <!-- END_CUSTOM_CODE_dataListViewModel -->
-    <script type="text/x-kendo-template" id="dataListViewModelTemplate">
-        <div>
-            <h3>#: data['fromUsername'] #</h3>
-            <p>#: (new Date(data['timestamp'])).toLocaleString() #</p>
-            <h5>#: data['urlText'] #</h5>
-            <p>#= data['text'] #</p>            
+
+    <script type="text/x-kendo-template" id="dataListViewModelTemplate">               
+        <div style="position: relative;">
+            # var unread = 'display: none'; #
+            # if(data['read'] == false) { #
+            #   unread = 'display: block';     #
+            # } #  
+        
+            <div style="#: unread #" class="circle"></div>
+            <div class="j-listview-item announcement">
+            
+                # var image = ''; #
+                # if (data['type'] == 1) { #
+                #   image = 'resources/img/system.png'; #
+                #} else if (data['type'] == 6 || data['type'] == 12) { #
+                #   image = 'resources/img/comment.png';#
+                #} else if (data['type'] == 5 || data['type'] == 10) { #
+                #   image = 'resources/img/tag.png';#
+                #} else { #
+                #   image = 'resources/img/envelope.png'; #
+                #} #                	
+                <img src="#: image #"/>
+                <div class="j-listview-item-content">
+                    <span>#: data['urlText'] #</span>
+                    <span>#= data['text'] #</span>
+                </div>
+            </div>            
         </div>
     </script>
 </div>

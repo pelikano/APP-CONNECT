@@ -23,7 +23,6 @@ app.dataListView = kendo.observable({
                     url: dataProvider.url
                 }
             },
-
             schema: {
                 data: 'data',
                 model: {
@@ -44,7 +43,15 @@ app.dataListView = kendo.observable({
             			'timestamp': {
                             field: 'timestamp',
                             defaultValue: ''
-                        }                         
+                        },
+                        'type': {
+                            field: 'type',
+                            defaultValue: -1
+                        },
+                       'read': {
+                            field: 'read',
+                            defaultValue: 'true'
+                        }                        
                     }
                 }
             }
@@ -53,6 +60,18 @@ app.dataListView = kendo.observable({
         dataListViewModel = kendo.observable({
             dataSource: dataSource,
             itemClick: function(e) {
+                $.ajax({    
+                    beforeSend: function(req, settings) {
+                        app.mobileApp.pane.loader.show(); 
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
+                    },
+                    contentType: 'application/json',
+                    type: 'POST',                   
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?notificationId=" + e.dataItem.uid,
+                    success: function(result) {                  
+                       app.mobileApp.pane.loader.hide(); 
+                    }
+                });                                
                 app.mobileApp.navigate('#components/dataListView/details.html?uid=' + e.dataItem.uid);
             },
             detailsShow: function(e) {
