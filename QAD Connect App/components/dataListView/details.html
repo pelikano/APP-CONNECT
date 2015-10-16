@@ -1,25 +1,5 @@
-<div data-role="view" data-title="Details" data-model="app.dataListView.dataListViewModel" data-bind="events: { show: detailsShow }">
-    <header data-role="header">
-        <div data-role="navbar" class="header-text">
-            <a data-role="backbutton" data-align="left">Back</a>
-            <a data-role="button" href="#foo" data-rel="popover" data-icon="contacts" data-align="right">
-                      <div id="foo3" data-role="popover" data-popup='{ "width": "140" }'>
-                          <div data-role="view" data-title="view1" data-model="userinfo">
-                              <ul data-role="listview">
-                                  <li>
-                                      <span data-bind="text:username"></span>
-                                      <script>
-                                        var userinfo = { username: localStorage.getItem("user") };
-                                       </script>
-                                  </li>
-                                  <li><span data-role="button" onClick="logOut();">Logout</span></li>
-                              </ul>
-                          </div>
-                        
-                      </div>
-                 </a>
-        </div>
-    </header>
+<div data-role="view" data-title="Details" data-layout="main-nav" data-model="app.dataListView.dataListViewModel" data-bind="events: { show: detailsShow }">
+
 
 
     <!-- START_CUSTOM_CODE_dataListViewModel -->
