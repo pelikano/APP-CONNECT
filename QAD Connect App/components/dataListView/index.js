@@ -57,25 +57,33 @@ app.dataListView = kendo.observable({
                 var item = e.view.params.uid,
                     dataSource = dataListViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
-                if (!itemModel.Text) {
-                    itemModel.Text = String.fromCharCode(160);
+                if (!itemModel.text) {
+                    itemModel.text = String.fromCharCode(160);
                 }
                 dataListViewModel.set('currentItem', itemModel);
+                
             },
             fields: {
-                reply: '',
+                reply: ''
             },
-            submit: function() {
-                $.ajax({
-                    type: 'POST',
-                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxpostcomment",
-                    data: {
-                       notificationId: 'testid',
-                       domainCode: '',
-                       entityCode: ''                        
+            submit: function() {  
+             var message = {
+                comment: app.dataListView.dataListViewModel.fields.reply,
+                commentTime: new Date()
+            }
+                $.ajax({    
+                    beforeSend: function(req, settings) {
+                        app.mobileApp.pane.loader.show(); 
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
                     },
-                    success: function(result){
-                       
+                    contentType: 'application/json',
+                    type: 'POST',                   
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxpostcomment?notificationId=" + app.dataListView.dataListViewModel.currentItem.id +
+                    "&domainCode=" + localStorage.getItem("domainCode") + "&entityCode=" + localStorage.getItem("entityCode"),
+                    data: JSON.stringify(message),                    
+                    success: function(result){                       
+                       app.dataListView.dataListViewModel.set('fields.reply', '')
+                       app.mobileApp.pane.loader.hide(); 
                     }
                 });
             },           
