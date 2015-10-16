@@ -137,9 +137,11 @@
   
 }
 
-.qad-logo {
 
-    
+.km-flat .km-button {
+  border-color: rgba(0,0,0,0);
+  background: rgba(0,0,0,0);  
+  border-width:0px; 
     
 }
 
@@ -236,7 +238,77 @@
     
 }
 
+.km-details{
+    float:right; margin-right: 0.2rem;
+}
 
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #999;
+    border-radius: 10px;
+}
+
+.badge-notify {
+    background: red;
+    position: relative;
+    top: -2px;
+}
+
+.km-list>li, .km-widget .km-listview-link, .km-widget .km-listview-label {
+
+  padding: .9em .7em;
+}
+
+.km-flat .km-popup.km-pane {
+  border: 1px solid transparent;
+  background-color: #c5c5c5;
+  border-radius:0px;
+  text-align:center; 
+  box-shadow: 5px 5px 5px #888888;
+  
+}
+
+.km-flat .km-popup-wrapper {
+   padding-right: 0px;
+   padding-top: 17px; 
+}
+
+.km-flat .km-popup-arrow:after {
+  border-color: rgba(0,0,0,0) transparent;
+  border-style: solid;
+  border-width: 0 15px 15px;
+}
+
+
+.km-mycustomicon:after,
+    .km-mycustomicon:before
+    {
+        content: "\e0b3";
+    }
+.back-icon{
+    
+    padding-top:0.9em;
+    font-style:normal;
+    font-size:1.2em;
+    
+}
+
+.km-more:after, .km-more:before {
+  content: "\e0e0";
+    font-size:1.8em;
+    top:-3px;
+    
+}
 
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 

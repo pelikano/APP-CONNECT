@@ -1,7 +1,9 @@
 'use strict';
 
 app.dataListView = kendo.observable({
-    onShow: function() {},
+    onShow: function(e) {
+         localStorage.setItem("currentView", "dataListMain");
+    },
     afterShow: function() {}
 });
 
@@ -54,6 +56,7 @@ app.dataListView = kendo.observable({
                 app.mobileApp.navigate('#components/dataListView/details.html?uid=' + e.dataItem.uid);
             },
             detailsShow: function(e) {
+                localStorage.setItem("currentView", "dataListDetail");
                 var item = e.view.params.uid,
                     dataSource = dataListViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);

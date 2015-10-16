@@ -1,44 +1,10 @@
-<div data-role="view" data-title="Details" data-model="app.dataListView.dataListViewModel" data-bind="events: { show: detailsShow }">
-    <header data-role="header">
-        <div data-role="navbar" class="header-text">
-            <a data-role="backbutton" data-align="left">Back</a>
-            <a data-role="button" href="#foo" data-rel="popover" data-icon="contacts" data-align="right">
-                      <div id="foo3" data-role="popover" data-popup='{ "width": "140" }'>
-                          <div data-role="view" data-title="view1" data-model="userinfo">
-                              <ul data-role="listview">
-                                  <li>
-                                      <span data-bind="text:username"></span>
-                                      <script>
-                                        var userinfo = { username: localStorage.getItem("user") };
-                                       </script>
-                                  </li>
-                                  <li><span data-role="button" onClick="logOut();">Logout</span></li>
-                              </ul>
-                          </div>
-                        
-                      </div>
-                 </a>
-        </div>
-    </header>
-    <!-- START_CUSTOM_CODE_dataListViewModel -->    
-    <h5><span data-bind="text: currentItem.urlText"></span></h5>
-	<p><span data-bind="html: currentItem.text"></span></p>
-    
-    <div id="formViewModel" class="form-view">
-        <form action="submit()">
-            <ul class="form-content" data-role="listview" data-style="inset" data-type="group">
-                <li><label>
-                    <input id="reply" type="text" data-bind="value: fields.reply" autofocus required/>
-                 </label>
-                </li>
-            </ul>           
-            <div class="button-group">                
-                <a class="primary" data-role="button" data-icon="reply" data-bind="events: { click: submit }">Reply</a>
-            </div>
-        </form>
-    </div>
-    
-        
+<div data-role="view" data-title="Details" data-layout="main-nav" data-model="app.dataListView.dataListViewModel" data-bind="events: { show: detailsShow }">
+
+
+
+    <!-- START_CUSTOM_CODE_dataListViewModel -->
+    <span data-bind="text: currentItem.urlText" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;"></span>
+	<span data-bind="html: currentItem.text"></span>
     <div data-role="footer">
             <div data-role="tabstrip">
                 <a href="tel:654566515" data-rel="external" data-icon="phone">Call</a>   

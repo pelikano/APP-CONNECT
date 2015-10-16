@@ -27,24 +27,25 @@
     <div data-role="layout" data-id="main-nav">
         <header data-role="header">
             <div data-role="navbar" class="header-text">
-                <a data-align="left" onClick="backback();">Back</a>
-                <img class="qad-logo" src="resources/img/QAD_46.png" >
-                 <a data-role="button" href="#foo" data-rel="popover" data-icon="contacts" data-align="right">
+                <span class="back-icon" onClick="backPage();" data-align="left">Back</span>
+                <img  src="resources/img/QAD_46.png">
+                 <span data-role="button" href="#foo" data-rel="popover" data-icon="more" data-align="right" width="150%" height="150%">
                       <div id="foo" data-role="popover" data-popup='{ "width": "140" }'>
                           <div data-role="view" data-title="view1" data-model="userinfo">
                               <ul data-role="listview">
+                                  
                                   <li>
-                                      <span data-bind="text:username"></span>
+                                      <i><span data-bind="text:username"></span></i>
                                       <script>
                                         var userinfo = { username: localStorage.getItem("user") };
                                        </script>
                                   </li>
-                                  <li><span data-role="button" onClick="logOut();">Logout</span></li>
+                                  <li><span data-icon="mycustomicon" onClick="logOut();"></span><span data-align="right" data-role="button" onClick="logOut();">Logout</span></li>
                               </ul>
                           </div>
                         
                       </div>
-                 </a>
+                 </span>
             </div>
         </header>
 
@@ -57,9 +58,9 @@
     </div>
 
     <div data-role="layout" data-id="main-nonav">
-        <header data-role="header" >
-            <div data-role="navbar"  >
-                <div><img class="qad-logo"  src="resources/img/QAD_46.png" > </div>
+        <header data-role="header">
+            <div data-role="navbar">
+                <img  src="resources/img/QAD_46.png" > 
             </div>
         </header>
 
@@ -72,13 +73,13 @@
     <div data-role="layout" data-id="workspaces">
         <header data-role="header">
             <div data-role="navbar" >
-                 <span><img class="qad-logo" src="resources/img/QAD_46.png"></span>
-                <a data-role="button" href="#foo" data-rel="popover" data-icon="contacts" data-align="right">
+                 <img  src="resources/img/QAD_46.png">
+                <a data-role="button" href="#foo" data-rel="popover" data-icon="more" data-align="right">
                       <div id="foo2" data-role="popover" data-popup='{ "width": "140" }'>
                           <div data-role="view" data-title="view1" data-model="userinfo">
                               <ul data-role="listview">
                                   <li>
-                                      <span data-bind="text:username"></span>
+                                      <i><span data-bind="text:username"></span></i>
                                       <script>
                                         var userinfo = { username: localStorage.getItem("user") };
                                        </script>

@@ -88,4 +88,16 @@ function logOut(){
 }
 
 var userid = localStorage.getItem("user");
+
+function backPage(){
+    var currentView = localStorage.getItem("currentView");
+    if (currentView == 'dataListMain'){
+        app.mobileApp.navigate('components/homeView/view.html');
+    } else if (currentView == 'dataListDetail'){
+        app.mobileApp.navigate('components/dataListView/view.html');
+    } else {
+        app.mobileApp.navigate('components/authenticationView/view.html');
+    }
+    //app.mobileApp.navigate(localStorage.getItem("currentView"));
+}
 // END_CUSTOM_CODE_kendoUiMobileApp
