@@ -72,6 +72,8 @@ app.authenticationView = kendo.observable({
                 localStorage.setItem("user",  email);
                 localStorage.setItem("password", password);
                 
+                // registerForPush();
+                
                 if (!localStorage.getItem("domainCode") && !localStorage.getItem("entityCode")){
                     app.mobileApp.navigate('components/homeView/view.html');
                 } else {
