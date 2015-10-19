@@ -2,11 +2,11 @@
 
 app.dataListView = kendo.observable({
     onShow: function(e) {
-         localStorage.setItem("currentView", "dataListMain");
-         // if (!app.data.registered) {
-         //    registerForPush();           
-         // }
-         
+         localStorage.setItem("currentView", "dataListMain");         
+        if (!app.data.registered) {
+            // registerForPush();                     
+         }
+         app.dataListView.dataListViewModel.get('dataSource').read();
     },
     afterShow: function() {}
 });
