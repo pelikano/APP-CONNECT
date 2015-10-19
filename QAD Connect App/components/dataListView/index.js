@@ -3,6 +3,10 @@
 app.dataListView = kendo.observable({
     onShow: function(e) {
          localStorage.setItem("currentView", "dataListMain");
+         // if (!app.data.registered) {
+         //    registerForPush();           
+         // }
+         
     },
     afterShow: function() {}
 });
@@ -18,7 +22,7 @@ app.dataListView = kendo.observable({
                     type: "GET",
                     beforeSend: function(req, settings) {
                         req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
-                        settings.url += '&domainCode=' + localStorage.getItem("domainCode") + '&entityCode=' + localStorage.getItem("entityCode");
+                        settings.url += '&inboxDomainCode=' + localStorage.getItem("domainCode") + '&inboxEntityCode=' + localStorage.getItem("entityCode");
                     },
                     url: dataProvider.url
                 }
@@ -60,18 +64,23 @@ app.dataListView = kendo.observable({
         dataListViewModel = kendo.observable({
             dataSource: dataSource,
             itemClick: function(e) {
-                $.ajax({    
-                    beforeSend: function(req, settings) {
-                        app.mobileApp.pane.loader.show(); 
-                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
-                    },
-                    contentType: 'application/json',
-                    type: 'POST',                   
-                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?notificationId=" + e.dataItem.uid,
-                    success: function(result) {                  
-                       app.mobileApp.pane.loader.hide(); 
-                    }
-                });                                
+                var item = e.dataItem.uid,
+                    dataSource = dataListViewModel.get('dataSource'),
+                    itemModel = dataSource.getByUid(item);
+                if (itemModel.read != true) {            
+                    $.ajax({    
+                        beforeSend: function(req, settings) {
+                            req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
+                        },
+                        contentType: 'application/json',
+                        type: 'POST',                   
+                        url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?notificationId=" + itemModel.id,
+                        success: function(result) {
+                           dataListViewModel.get('dataSource').read();
+                           app.mobileApp.pane.loader.hide(); 
+                        }
+                    });
+                }
                 app.mobileApp.navigate('#components/dataListView/details.html?uid=' + e.dataItem.uid);
             },
             detailsShow: function(e) {
@@ -101,7 +110,7 @@ app.dataListView = kendo.observable({
                     contentType: 'application/json',
                     type: 'POST',                   
                     url: "http://vmfvp02:22010/qad-central/api/qracore/inboxpostcomment?notificationId=" + app.dataListView.dataListViewModel.currentItem.id +
-                    "&domainCode=" + localStorage.getItem("domainCode") + "&entityCode=" + localStorage.getItem("entityCode"),
+                    "&inboxDomainCode=" + localStorage.getItem("domainCode") + "&inboxEntityCode=" + localStorage.getItem("entityCode"),
                     data: JSON.stringify(message),                    
                     success: function(result){                       
                        app.dataListView.dataListViewModel.set('fields.reply', '')
