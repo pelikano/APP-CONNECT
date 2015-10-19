@@ -12,7 +12,7 @@
             if (!localStorage.getItem("user")){
                 initialPage = 'components/authenticationView/view.html';
             } else {
-                if (!localStorage.getItem("domainCode") && !localStorage.getItem("entityCode")){
+                if (!localStorage.getItem("domainCode") && !localStorage0.getItem("entityCode")){
                     initialPage = 'components/homeView/view.html';
                 } else {
                     initialPage = 'components/dataListView/view.html';
@@ -76,6 +76,14 @@
             return navigator.connection.type !== 'none';
         }
     };
+        
+    var el = new Everlive('Y2IpSQ0peSCVtcpA');
+	
+    var registered = false;
+    
+    app.data.el = el;
+    app.data.registered = registered;
+
 }());
 
 // START_CUSTOM_CODE_kendoUiMobileApp
@@ -100,4 +108,62 @@ function backPage(){
     }
     //app.mobileApp.navigate(localStorage.getItem("currentView"));
 }
+
+
+function registerForPush() {
+	var pushSettings = {
+        iOS: {
+            badge: true,
+            sound: true,
+            alert: true,
+            clearBadge: true
+        },
+        android: {                
+            senderID: '149206055848'
+        },
+        wp8: {
+            channelName: 'EverlivePushChannel'
+        },
+        notificationCallbackIOS: function(e) {
+            // logic for handling push in iOS
+        },
+        notificationCallbackAndroid: function(e) {
+            // logic for handling push in Android
+            
+            navigator.notification.alert(e.message,
+									 function() { },
+									 'QAD Connect', 
+									 'Done'
+            );  
+            
+        },
+        notificationCallbackWP8: function(e) {
+            // logic for handling push in Windows Phone. Not available in NativeScript.
+        },
+        customParameters: {
+            userAccount : localStorage.getItem("user")
+        }
+    };    
+    
+    app.data.el.push.register(pushSettings).then(
+        function(e) {
+            app.data.registered = true;
+        },
+        function(e) {
+            app.data.registered = false;
+        }
+    );	    
+}
+
+
+function getRegistration() {     
+    app.data.el.push.getRegistration(
+        function () {
+            app.data.registered = true;
+        }, 
+        function() {
+            app.data.registered = false;
+        });
+}
+
 // END_CUSTOM_CODE_kendoUiMobileApp
