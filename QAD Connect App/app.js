@@ -131,9 +131,7 @@ function registerForPush() {
             // logic for handling push in Android
             
             navigator.notification.alert(e.message,
-									 function() { 
-                                         app.dataListView.dataListViewModel.get('dataSource').read();
-                                     },
+									 function() { },
 									 'QAD Connect', 
 									 'Done'
             );  
