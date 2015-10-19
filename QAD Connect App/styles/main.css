@@ -371,6 +371,41 @@
     
 }
 
+.contextmenu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F1F1F1;
+  text-align: center;
+}
+
+.itemdragged {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  background-color: rgb(244, 244, 244);
+}
+
+.km-button.btn-archive {
+  border: none;
+  color: gray;
+  background: #F1F1F1;
+  margin-top: 5px;
+  float:right;
+}
+
+.touchItem2 {
+    height: 80px;
+}
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
 

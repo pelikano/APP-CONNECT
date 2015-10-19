@@ -10,7 +10,7 @@ app.dataListView = kendo.observable({
 // START_CUSTOM_CODE_dataListView
 // END_CUSTOM_CODE_dataListView
 (function(parent) {
-    var dataProvider = app.data.notificationProvider,
+    var dataProvider = app.data.notificationProvider,    
         dataSourceOptions = {
             type: 'json',
             transport: {
@@ -58,7 +58,11 @@ app.dataListView = kendo.observable({
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
         dataListViewModel = kendo.observable({
-            dataSource: dataSource,
+            hold: function(e) {
+                alert('');
+                e.event.stopPropagation();
+            },
+            dataSource: dataSource,          
             itemClick: function(e) {
                 $.ajax({    
                     beforeSend: function(req, settings) {
@@ -108,7 +112,55 @@ app.dataListView = kendo.observable({
                        app.mobileApp.pane.loader.hide(); 
                     }
                 });
-            },           
+            },
+            dragging : function(e) {
+              var left = e.sender.element.position().left;
+              if (left <= 0) {
+                e.sender.element.css("left", left + e.touch.x.delta);
+              }
+          
+        },
+        dragend : function(e) {           
+          console.log(e);
+          var el = e.sender.element;
+          // get the listview width 
+          var width = $("#itemlist").width();
+          // set a threshold of 75% of the width
+          var threshold = (width * .25);          
+          // if the item is less than 75% of the way across, slide it out
+          if (Math.abs(el.position().left) > threshold) {
+            //kendo.fx(el).slideIn("right").duration(500).reverse();
+            el.animate({ left: -threshold });
+          }
+          else {
+            el.animate({ left: 0 });
+          }
+        },
+        swipe : function(e) {
+            alert("swipe");
+          if (e.direction === "left") {
+            var del = e.sender.element;
+            kendo.fx(del).slideIn("right").duration(500).reverse();
+          }
+        },
+        tap : function(e) {
+          // make sure the initial touch wasn't on the archive button
+          var initial = e.touch.initialTouch;
+          var target = e.touch.currentTarget;
+          console.table([{ initial: initial, target: target }]);
+          // if we are tapping outside the archive area, cancel the action
+          if (initial === target) 
+          {
+            // get the closest item and slide it back in
+            var item = e.sender.element.siblings();
+            item.css({ left: 0 });
+            kendo.fx(item).slideIn("left").duration(500).play();
+          }
+          // else we are archiving so remove it
+          else {
+            e.sender.element.closest("li").addClass("collapsed");
+          }
+        },
             currentItem: null
         });
     parent.set('dataListViewModel', dataListViewModel);

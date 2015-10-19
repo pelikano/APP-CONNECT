@@ -2,35 +2,49 @@
     <!-- START_CUSTOM_CODE_dataListView -->
     <!-- END_CUSTOM_CODE_dataListView -->
 
-    <ul data-role="listview" data-style="inset" data-template="dataListViewModelTemplate" data-bind="{ source: dataListViewModel.dataSource, events: {click: dataListViewModel.itemClick}}" data-pull-to-refresh="true" data-endless-scroll="false">
+    <ul id="itemlist" data-role="listview" data-style="inset" data-template="dataListViewModelTemplate" data-bind="{ source: dataListViewModel.dataSource, events: {click: dataListViewModel.itemClick}}" data-pull-to-refresh="true" data-endless-scroll="false">
     </ul>
 
-    <script type="text/x-kendo-template" id="dataListViewModelTemplate">               
-        <div style="position: relative;">
-            # var unread = 'display: none'; #
-            # if(data['read'] == false) { #
-            #   unread = 'display: block';     #
+
+    <script type="text/x-kendo-template" id="dataListViewModelTemplate">
+        <div class="touchItem2" style="position: relative;">
+            <div class="contextmenu" data-role="touch" data-tap="app.dataListView.dataListViewModel.tap">
+              <a data-role="button" class="btn-archive" data-icon="action">Delete</a>
+            </div>
+            <div class="itemdragged" data-role="touch" data-drag="app.dataListView.dataListViewModel.dragging" data-dragend="app.dataListView.dataListViewModel.dragend">
+            # var unread = 'display: none';
+            #
+            # if (data['read'] == false) { #
+                #   unread = 'display: block';     #
             # } #  
-        
-            <div style="#: unread #" class="circle"></div>
-            <div class="j-listview-item announcement">
             
-                # var image = ''; #
+            <div style="#: unread #
+
+            " class="circle"></div>
+            <div class="j-listview-item announcement">
+                
+                # var image = '';
+                #
                 # if (data['type'] == 1) { #
-                #   image = 'resources/img/system.png'; #
+                    #   image = 'resources/img/system.png'; #
                 #} else if (data['type'] == 6 || data['type'] == 12) { #
-                #   image = 'resources/img/comment.png';#
+                    #   image = 'resources/img/comment.png';#
                 #} else if (data['type'] == 5 || data['type'] == 10) { #
-                #   image = 'resources/img/tag.png';#
+                    #   image = 'resources/img/tag.png';#
                 #} else { #
-                #   image = 'resources/img/envelope.png'; #
-                #} #                	
+                    #   image = 'resources/img/envelope.png'; #
+                #}
+                #                	
                 <img src="#: image #"/>
                 <div class="j-listview-item-content">
                     <span>#: data['urlText'] #</span>
                     <span>#= data['text'] #</span>
                 </div>
-            </div>            
+            </div>
+            </div>
         </div>
+        
     </script>
+    
+  
 </div>
