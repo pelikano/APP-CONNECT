@@ -18,7 +18,7 @@ app.dataListView = kendo.observable({
                     type: "GET",
                     beforeSend: function(req, settings) {
                         req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
-                        settings.url += '&domainCode=' + localStorage.getItem("domainCode") + '&entityCode=' + localStorage.getItem("entityCode");
+                        settings.url += '&inboxDomainCode=' + localStorage.getItem("domainCode") + '&inboxEntityCode=' + localStorage.getItem("entityCode");
                     },
                     url: dataProvider.url
                 }
@@ -64,6 +64,7 @@ app.dataListView = kendo.observable({
             },
             dataSource: dataSource,          
             itemClick: function(e) {
+                var data = e.sender.element.data();                    
                 $.ajax({    
                     beforeSend: function(req, settings) {
                         app.mobileApp.pane.loader.show(); 
@@ -71,12 +72,12 @@ app.dataListView = kendo.observable({
                     },
                     contentType: 'application/json',
                     type: 'POST',                   
-                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?notificationId=" + e.dataItem.uid,
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?notificationId=" + data.notificationid,
                     success: function(result) {                  
-                       app.mobileApp.pane.loader.hide(); 
+                       app.mobileApp.pane.loader.hide();
                     }
                 });                                
-                app.mobileApp.navigate('#components/dataListView/details.html?uid=' + e.dataItem.uid);
+                app.mobileApp.navigate('#components/dataListView/details.html?uid=' + data.uid);
             },
             detailsShow: function(e) {
                 localStorage.setItem("currentView", "dataListDetail");
@@ -126,7 +127,7 @@ app.dataListView = kendo.observable({
           // get the listview width 
           var width = $("#itemlist").width();
           // set a threshold of 75% of the width
-          var threshold = (width * .25);          
+          var threshold = (width * .30);          
           // if the item is less than 75% of the way across, slide it out
           if (Math.abs(el.position().left) > threshold) {
             //kendo.fx(el).slideIn("right").duration(500).reverse();
@@ -136,30 +137,54 @@ app.dataListView = kendo.observable({
             el.animate({ left: 0 });
           }
         },
-        swipe : function(e) {
-            alert("swipe");
-          if (e.direction === "left") {
-            var del = e.sender.element;
-            kendo.fx(del).slideIn("right").duration(500).reverse();
-          }
+        delete : function(e) {
+            var data = e.button.data();
+            data.notificationid;
+            var message = {
+                comment: app.dataListView.dataListViewModel.fields.reply,
+                commentTime: new Date()
+            }
+            $.ajax({    
+                    beforeSend: function(req, settings) {
+                        app.mobileApp.pane.loader.show(); 
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
+                        settings.url += 'notificationId=' + data.notificationid;
+                    },
+                    contentType: 'application/json',
+                    type: 'POST',                   
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxhidenotification?",
+                    data: JSON.stringify(message),                    
+                    success: function(result){                       
+                       app.mobileApp.pane.loader.hide(); 
+                       dataListViewModel.get('dataSource').read();
+                    }
+                });
+            
         },
-        tap : function(e) {
-          // make sure the initial touch wasn't on the archive button
-          var initial = e.touch.initialTouch;
-          var target = e.touch.currentTarget;
-          console.table([{ initial: initial, target: target }]);
-          // if we are tapping outside the archive area, cancel the action
-          if (initial === target) 
-          {
-            // get the closest item and slide it back in
-            var item = e.sender.element.siblings();
-            item.css({ left: 0 });
-            kendo.fx(item).slideIn("left").duration(500).play();
-          }
-          // else we are archiving so remove it
-          else {
-            e.sender.element.closest("li").addClass("collapsed");
-          }
+        markasread : function(e) {
+            var data = e.button.data();
+            data.notificationid;
+            var message = {
+                comment: app.dataListView.dataListViewModel.fields.reply,
+                commentTime: new Date()
+            }
+            $.ajax({    
+                    beforeSend: function(req, settings) {
+                        app.mobileApp.pane.loader.show(); 
+                        req.setRequestHeader('Authorization', "Basic " + btoa(localStorage.getItem("user") + ":" + localStorage.getItem("password")));
+                        settings.url += 'notificationId=' + data.notificationid;
+                    },
+                    contentType: 'application/json',
+                    type: 'POST',                   
+                    url: "http://vmfvp02:22010/qad-central/api/qracore/inboxmarkasread?",
+                    data: JSON.stringify(message),                    
+                    success: function(result){
+                       dataListViewModel.get('dataSource').read();
+                       app.mobileApp.pane.loader.hide();
+                    }
+                });
+            
+       
         },
             currentItem: null
         });

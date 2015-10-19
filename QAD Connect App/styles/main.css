@@ -158,6 +158,10 @@
     background-color: transparent;
 }
 
+.km-flat .km-listinset>li:last-child, .km-flat .km-listgroupinset .km-list>li:last-child {
+    border: 0;
+}
+
 .circle {
 	border-radius: 50%;
 	width: 12px;
@@ -416,7 +420,7 @@
   background-color: rgb(244, 244, 244);
 }
 
-.km-button.btn-archive {
+.actionbutton.btn-archive {
   border: none;
   color: gray;
   background: #F1F1F1;
