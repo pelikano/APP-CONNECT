@@ -416,6 +416,18 @@
   background-color: rgb(244, 244, 244);
 }
 
+.km-button.btn-archive {
+  border: none;
+  color: gray;
+  background: #F1F1F1;
+  margin-top: 5px;
+  float:right;
+}
+
+.touchItem2 {
+    height: 80px;
+}
+
 /* END_CUSTOM_CODE_kendoUiMobileApp */
 
 
