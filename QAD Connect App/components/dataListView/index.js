@@ -106,7 +106,7 @@ app.dataListView = kendo.observable({
                     contentType: 'application/json',
                     type: 'POST',                   
                     url: "http://vmfvp02:22010/qad-central/api/qracore/inboxpostcomment?notificationId=" + app.dataListView.dataListViewModel.currentItem.id +
-                    "&domainCode=" + localStorage.getItem("domainCode") + "&entityCode=" + localStorage.getItem("entityCode"),
+                    "&inboxDomainCode=" + localStorage.getItem("domainCode") + "&inboxEntityCode=" + localStorage.getItem("entityCode"),
                     data: JSON.stringify(message),                    
                     success: function(result){                       
                        app.dataListView.dataListViewModel.set('fields.reply', '')
