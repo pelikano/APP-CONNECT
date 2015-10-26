@@ -211,7 +211,34 @@ app.dataListView = kendo.observable({
         telephoneLink: function() {
             return "tel:" + this.get("telephone");
         },  
-            currentItem: null
+            currentItem: null,
+        openContact: function() {
+            var fields = ["displayName", "name", "number"];
+            var options = new ContactFindOptions();
+            options.filter = app.dataListView.dataListViewModel.currentItem.fromUsername;
+            
+            navigator.contacts.find(fields, function(contacts) {
+                if(contacts.length > 0) {
+                    alert('Contact exists: ' + contacts.length);        
+                } else {
+                    var r = confirm('Do you want to create a new contact?');
+                    if (r === true) {
+                        var newContact = navigator.contacts.create();
+                        newContact.displayName = app.dataListView.dataListViewModel.currentItem.fromUsername;
+                        newContact.emails = [app.dataListView.dataListViewModel.currentItem.fromUserEmail];
+                        alert('2');
+                        //newContact.phoneNumbers.push(app.dataListView.dataListViewModel.currentItem.fromUserPhone);
+                        try {
+                            newContact.save(function() {alert('User was created correctly');}, function(){alert('bad');});
+                        } catch(err) {
+                            alert(err);
+                        }
+                    }
+                }
+            
+            },
+            function(){}, options);
+        }
         });
     parent.set('dataListViewModel', dataListViewModel);
 })(app.dataListView);
