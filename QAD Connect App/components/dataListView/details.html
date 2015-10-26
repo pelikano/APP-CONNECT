@@ -28,8 +28,9 @@
         
     <div data-role="footer">
             <div data-role="tabstrip">
-                <a href="tel:654566515" data-rel="external" data-icon="phone">Call</a>   
-                <a href="mailto:eem@qad.com" data-rel="external" data-icon="reply">email</a>
+                <a data-bind="attr: { href: telephoneLink }" data-rel="external" data-icon="phone">Call</a>   
+                <!-- <a data-bind="attr: { href: mailtoLink }" data-rel="external" data-icon="reply">mail</a> -->
+                <a data-bind="events: { click: sendMail }" data-icon="reply">mail</a>
                 <a href="views/contacts.html" data-icon="contacts">Contact</a>
             </div>
     </div>

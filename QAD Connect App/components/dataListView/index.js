@@ -4,7 +4,7 @@ app.dataListView = kendo.observable({
     onShow: function(e) {
          localStorage.setItem("currentView", "dataListMain");
     },
-    afterShow: function() {}
+    afterShow: function() {}    
 });
 
 // START_CUSTOM_CODE_dataListView
@@ -31,12 +31,20 @@ app.dataListView = kendo.observable({
                         'fromUsername': {
                             field: 'fromUser.userName',
                             defaultValue: ''
-                        },                        
+                        },
+                        'fromUserEmail': {
+                            field: 'fromUser.emailAddress',
+                            defaultValue: ''  
+                        },
+                        'fromUserPhone': {
+                            field: 'fromUser.phoneNumber',
+                            defaultValue: ''  
+                        },
                         'urlText': {
                             field: 'urlText',
                             defaultValue: ''
                         },
-               			'text': {
+               	     'text': {
                             field: 'text',
                             defaultValue: ''
                         },
@@ -88,6 +96,8 @@ app.dataListView = kendo.observable({
                     itemModel.text = String.fromCharCode(160);
                 }
                 dataListViewModel.set('currentItem', itemModel);
+                dataListViewModel.set('mail', itemModel.fromUserEmail);
+                dataListViewModel.set('telephone', itemModel.fromUserPhone);
                 
             },
             fields: {
@@ -186,6 +196,21 @@ app.dataListView = kendo.observable({
             
        
         },
+        mail: null,
+        sendMail: function() {
+            
+            var address = "mailto:" + this.get("mail") + '?subject=Reply to QAD notification&body=' 
+            + 'I have received this notification from you:<br /><br /><i>' 
+            +  app.dataListView.dataListViewModel.currentItem.text
+            + '</i><br /><br /><br />Built by Java Ducks';
+            // + this.get('datasource').text;
+            
+            window.open(address, "emailWindow");
+        },
+        telephone: null,
+        telephoneLink: function() {
+            return "tel:" + this.get("telephone");
+        },  
             currentItem: null
         });
     parent.set('dataListViewModel', dataListViewModel);
