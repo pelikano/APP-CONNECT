@@ -42,6 +42,7 @@
     "ID_RESOLUTION_HD720P"
   ],
   "CorePlugins": [
+    "org.apache.cordova.contacts",
     "org.apache.cordova.network-information"
   ],
   "iOSDeploymentTarget": "6.0"
